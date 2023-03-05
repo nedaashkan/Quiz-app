@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>Quiz App</title>
+  </head>
+  <body>
+    <div class="app-container">
+      <div class="app">
+        <header>
+          <div>Points:<span id="point-el"> 10</span></div>
+          <div>Time : <span id="time-el"> 100</span></div>
+          <div>
+            <span id="question-number-el">1</span> of
+            <span id="all-questions-number-el">3</span> Question
+          </div>
+        </header>
+        <h1 id="question-el">do you like me?</h1>
+        <div class="button-box">
+          <button id="a" class="answer-btn">A ) <span id="answer-a">Yes</span></button>
+          <button id="b" class="answer-btn">B ) <span id="answer-b">No</span></button>
+          <button id="c" class="answer-btn">C ) <span id="answer-c">Maybe</span></button>
+          <button id="d" class="answer-btn">D) <span id="answer-d">So so</span></button>
+          <button id="next-btn-el" class="next-btn" onclick="nextQuestion()">Next</button>
+        </div>
+      </div>
+    </div>
+    <script src="./js/app.js"></script>
+  </body>
+</html>

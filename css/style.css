@@ -1,0 +1,104 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+header {
+  font-family: "Rubik", sans-serif;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 30px;
+  font-weight: 600;
+}
+.app-container {
+  max-width: 50%;
+  margin: 0 auto;
+  margin-top: 50px;
+}
+.app {
+  background-color: #f1f0ea;
+  box-shadow: 3px 3px 0px #0c0c0c;
+  border: 2px solid #0c0c0c;
+  border-radius: 30px;
+  padding: 25px 0;
+}
+h1 {
+  text-align: center;
+  font-family: "Rubik", sans-serif;
+}
+.button-box {
+  margin-top: 30px;
+}
+.answer-btn {
+  font-family: "Rubik", sans-serif;
+  color: #17344f;
+  background-color: #cfe5fa;
+  border: 2px solid #17344f;
+  box-shadow: 4px 4px 0px #204a71;
+  font-weight: 600;
+  display: block;
+  text-transform: uppercase;
+  width: 40%;
+  height: 60px;
+  margin: 0 auto;
+  padding: 20px;
+  padding-right: 0;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  text-align: start;
+  cursor: pointer;
+  transition: all ease-in-out 150ms;
+}
+.answer-btn:hover {
+  background-color: #9ab9d6;
+  box-shadow: 2px 2px 0px #17344f;
+}
+.next-btn {
+  font-family: "Rubik", sans-serif;
+  cursor: pointer;
+  color: #403510;
+  border: 2px solid #403510;
+  background-color: #f2ca3c;
+  box-shadow: 4px 4px 0px #403510;
+  font-weight: 600;
+  display: block;
+  text-transform: uppercase;
+  margin: 0 auto;
+  padding: 20px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  text-align: start;
+}
+
+.next-btn:hover {
+  background-color: #e6c13d;
+
+  box-shadow: 2.1px 2.1px 0px #403510;
+}
+.wrong-answer {
+  color: #3d170f;
+  border: 2px solid #572115;
+  background-color: #f04439;
+  box-shadow: 4px 4px 0px #572115;
+}
+
+.cerate-answer {
+  color: #0d2b14;
+  border: 2px solid #15451f;
+  background-color: #43dd65;
+  box-shadow: 4px 4px 0px #572115;
+}
+@media only screen and (max-width: 425px) {
+  /*Small smartphones [325px -> 425px]*/
+  .app-container {
+    max-width: 100%;
+  }
+}
+@media only screen and (max-width: 600px) {
+  /*Big smartphones [426px -> 600px]*/
+  .app-container {
+    max-width: 100%;
+    padding: 0 5px;
+  }
+}
