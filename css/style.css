@@ -82,12 +82,23 @@ h1 {
   background-color: #f04439;
   box-shadow: 4px 4px 0px #572115;
 }
-
+.wrong-answer:hover {
+  color: #3d170f;
+  border: 2px solid #572115;
+  background-color: #f04439;
+  box-shadow: 4px 4px 0px #572115;
+}
 .cerate-answer {
   color: #0d2b14;
   border: 2px solid #15451f;
   background-color: #43dd65;
-  box-shadow: 4px 4px 0px #572115;
+  box-shadow: 4px 4px 0px #0d2b14;
+}
+.cerate-answer:hover {
+  color: #0d2b14;
+  border: 2px solid #15451f;
+  background-color: #43dd65;
+  box-shadow: 4px 4px 0px #0d2b14;
 }
 @media only screen and (max-width: 425px) {
   /*Small smartphones [325px -> 425px]*/

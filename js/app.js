@@ -8,6 +8,42 @@ let quizData = [
     cerate: "a",
     questionNumber: 1,
   },
+  {
+    question: "what is your name?",
+    a: "neda",
+    b: "negin",
+    c: "aysan",
+    d: "lucy",
+    cerate: "c",
+    questionNumber: 2,
+  },
+  {
+    question: "how old are you ?",
+    a: "12",
+    b: "11",
+    c: "10",
+    d: "0",
+    cerate: "d",
+    questionNumber: 3,
+  },
+  {
+    question: "are you normal?",
+    a: "yes",
+    b: "no",
+    c: "maybe",
+    d: "who knows",
+    cerate: "b",
+    questionNumber: 4,
+  },
+  {
+    question: "what is my dream job",
+    a: "sleeping",
+    b: "dancing",
+    c: "programmings",
+    d: "doctor",
+    cerate: "c",
+    questionNumber: 5,
+  },
 ];
 let startQuiz = 0;
 let timeLeft = 100;
@@ -18,66 +54,91 @@ let clickedId;
 
 // point
 let point = 0;
+
 let displayPoints = document.getElementById("point-el");
-displayPoints.textContent = ` ${point}`;
+displayPoints.textContent = point;
 // time
 let displayTime = document.getElementById("time-el");
 displayTime.textContent = timeLeft;
 // displayCountDown();
-
-// question number;
 let displayQuestionNumber = document.getElementById("question-number-el");
-displayQuestionNumber.textContent = quizData[startQuiz].questionNumber;
 
-// all questions number;
 let displayAllQuestionsNumber = document.getElementById(
   "all-questions-number-el"
 );
-displayAllQuestionsNumber.textContent = quizData.length;
-// question;
+
 let displayQuestion = document.getElementById("question-el");
-displayQuestion.textContent = quizData[startQuiz].question;
+
+let displayAnswer_A = document.getElementById("answer-a");
+let displayAnswer_B = document.getElementById("answer-b");
+let displayAnswer_C = document.getElementById("answer-c");
+let displayAnswer_D = document.getElementById("answer-d");
+
+function displayQuestionAnswer(
+  questionNumber,
+  allQuestionsNumber,
+  question,
+  answer_A,
+  answer_B,
+  answer_C,
+  answer_D
+) {
+  displayQuestionNumber.textContent = questionNumber;
+  displayAllQuestionsNumber.textContent = allQuestionsNumber;
+  displayQuestion.textContent = question;
+  displayAnswer_A.textContent = answer_A;
+  displayAnswer_B.textContent = answer_B;
+  displayAnswer_C.textContent = answer_C;
+  displayAnswer_D.textContent = answer_D;
+}
 
 let answerButtonArray = document.querySelectorAll(".answer-btn");
 for (let i = 0; i < answerButtonArray.length; i++) {
   answerButtonArray[i].addEventListener("click", checkResult);
 }
-let displayAnswer_A = document.getElementById("answer-a");
-displayAnswer_A.textContent = quizData[startQuiz].a;
-
-let displayAnswer_B = document.getElementById("answer-b");
-displayAnswer_B.textContent = quizData[startQuiz].b;
-let displayAnswer_C = document.getElementById("answer-c");
-displayAnswer_C.textContent = quizData[startQuiz].c;
-let displayAnswer_D = document.getElementById("answer-d");
-displayAnswer_D.textContent = quizData[startQuiz].d;
 
 function checkResult() {
   clickedId = this.id;
   playerChoose = clickedId;
   console.log(playerChoose);
   if (playerChoose === quizData[startQuiz].cerate) {
-    alert("right answer");
-    
+    this.classList.add("cerate-answer");
+    point = point + 1;
+    displayPoints.textContent = point;
+    clearTimeout(timeId);
   } else {
-    alert("wrong answer");
+    this.classList.add("wrong-answer");
+    let cerateAnswerButton = document.getElementById(
+      `${quizData[startQuiz].cerate}`
+    );
+    cerateAnswerButton.classList.add("cerate-answer");
   }
 }
-function handler() {
-  for (let i = 0; i < answerButtonArray.length; i++) {
-    answerButtonArray[i].style.cursor = "not-allowed";
-  }
-}
+
 function nextQuestion() {
   startQuiz = startQuiz + 1;
-  console.log(startQuiz);
+  if (startQuiz >= 5) {
+    alert("we dont have more question start the game again");
+    startQuiz = 0;
+    point = 0;
+    displayPoints.textContent = 0;
+  }
+  displayQuestionAnswer(
+    quizData[startQuiz].questionNumber,
+    quizData.length,
+    quizData[startQuiz].question,
+    quizData[startQuiz].a,
+    quizData[startQuiz].b,
+    quizData[startQuiz].c,
+    quizData[startQuiz].d
+  );
 }
 function displayCountDown() {
   timeId = setInterval(countDown, 1000);
 }
 function countDown() {
   if (timeLeft === -1) {
-    clearTimeout(timeId);
+    // clearTimeout(timeId);
     // alert(
     //   "you can not click any answers button anymore and next question will show"
     // );
@@ -91,3 +152,12 @@ function countDown() {
     timeLeft--;
   }
 }
+displayQuestionAnswer(
+  quizData[startQuiz].questionNumber,
+  quizData.length,
+  quizData[startQuiz].question,
+  quizData[startQuiz].a,
+  quizData[startQuiz].b,
+  quizData[startQuiz].c,
+  quizData[startQuiz].d
+);
