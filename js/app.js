@@ -1,52 +1,52 @@
 let quizData = [
   {
-    question: "how are you?",
-    a: "good",
-    b: "amazing",
-    c: "bad",
-    d: "very very good",
+    question: "What is the world's widest river?",
+    a: "The Amazon",
+    b: "The Ganges",
+    c: "The Loire",
+    d: "The Mekong",
     cerate: "a",
     questionNumber: 1,
   },
   {
-    question: "what is your name?",
-    a: "neda",
-    b: "negin",
-    c: "aysan",
-    d: "lucy",
+    question: "biggest country in the word?",
+    a: "India",
+    b: "China",
+    c: "Russia",
+    d: "Pakistan",
     cerate: "c",
     questionNumber: 2,
   },
   {
-    question: "how old are you ?",
-    a: "12",
-    b: "11",
-    c: "10",
-    d: "0",
+    question: "What is a baby spider known as?",
+    a: "A Codling",
+    b: "A Leveret",
+    c: "A Joey",
+    d: "A Spiderling",
     cerate: "d",
     questionNumber: 3,
   },
   {
-    question: "are you normal?",
-    a: "yes",
-    b: "no",
-    c: "maybe",
-    d: "who knows",
+    question: "best programming language?",
+    a: "Python",
+    b: "Javascript",
+    c: "Java",
+    d: "PHP",
     cerate: "b",
     questionNumber: 4,
   },
   {
-    question: "what is my dream job",
-    a: "sleeping",
-    b: "dancing",
-    c: "programmings",
-    d: "doctor",
+    question: "Which country owns Corfu?",
+    a: "South Africa",
+    b: "Italy",
+    c: "Greece",
+    d: "turkiye",
     cerate: "c",
     questionNumber: 5,
   },
 ];
 let startQuiz = 0;
-let timeLeft = 100;
+let timeLeft;
 let timeId;
 let AllQuestionsNumber = quizData.length - 1;
 let playerChoose;
@@ -60,7 +60,7 @@ displayPoints.textContent = point;
 // time
 let displayTime = document.getElementById("time-el");
 displayTime.textContent = timeLeft;
-// displayCountDown();
+displayCountDown();
 let displayQuestionNumber = document.getElementById("question-number-el");
 
 let displayAllQuestionsNumber = document.getElementById(
@@ -100,25 +100,39 @@ for (let i = 0; i < answerButtonArray.length; i++) {
 function checkResult() {
   clickedId = this.id;
   playerChoose = clickedId;
-  console.log(playerChoose);
   if (playerChoose === quizData[startQuiz].cerate) {
     this.classList.add("cerate-answer");
     point = point + 1;
     displayPoints.textContent = point;
-    clearTimeout(timeId);
+    for (let i = 0; i < answerButtonArray.length; i++) {
+      answerButtonArray[i].removeEventListener("click", checkResult);
+    }
   } else {
     this.classList.add("wrong-answer");
+
     let cerateAnswerButton = document.getElementById(
       `${quizData[startQuiz].cerate}`
     );
     cerateAnswerButton.classList.add("cerate-answer");
+    for (let i = 0; i < answerButtonArray.length; i++) {
+      answerButtonArray[i].removeEventListener("click", checkResult);
+    }
   }
 }
 
 function nextQuestion() {
+  for (let i = 0; i < answerButtonArray.length; i++) {
+    answerButtonArray[i].addEventListener("click", checkResult);
+  }
+  for (let i = 0; i < answerButtonArray.length; i++) {
+    answerButtonArray[i].classList.remove("cerate-answer");
+    answerButtonArray[i].classList.remove("wrong-answer");
+  }
   startQuiz = startQuiz + 1;
   if (startQuiz >= 5) {
-    alert("we dont have more question start the game again");
+    clearTimeout(timeId);
+    displayCountDown();
+    displayTime.textContent = timeLeft;
     startQuiz = 0;
     point = 0;
     displayPoints.textContent = 0;
@@ -134,22 +148,35 @@ function nextQuestion() {
   );
 }
 function displayCountDown() {
+  timeLeft = 100;
   timeId = setInterval(countDown, 1000);
 }
 function countDown() {
   if (timeLeft === -1) {
-    // clearTimeout(timeId);
-    // alert(
-    //   "you can not click any answers button anymore and next question will show"
-    // );
-    if (playerChoose === undefined) {
-      alert(
-        "you didnt write any questions its going to show thre result after that"
-      );
+    clearTimeout(timeId);
+    displayCountDown();
+    displayTime.textContent = timeLeft;
+    startQuiz = 0;
+    point = 0;
+    displayPoints.textContent = 0;
+    displayQuestionAnswer(
+      quizData[startQuiz].questionNumber,
+      quizData.length,
+      quizData[startQuiz].question,
+      quizData[startQuiz].a,
+      quizData[startQuiz].b,
+      quizData[startQuiz].c,
+      quizData[startQuiz].d
+    );
+    for (let i = 0; i < answerButtonArray.length; i++) {
+      answerButtonArray[i].classList.remove("cerate-answer");
+      answerButtonArray[i].classList.remove("wrong-answer");
     }
   } else {
     displayTime.textContent = timeLeft;
     timeLeft--;
+  }
+  if (playerChoose === undefined) {
   }
 }
 displayQuestionAnswer(
